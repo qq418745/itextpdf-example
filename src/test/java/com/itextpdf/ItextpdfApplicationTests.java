@@ -48,7 +48,6 @@ public class ItextpdfApplicationTests {
             String htmlContent = new String(htmlBytes, StandardCharsets.UTF_8);
 
             ConverterProperties properties = new ConverterProperties();
-
             FontProvider fontProvider = new FontProvider();
             // 常用字体程序及对应编码
             fontProvider.addFont("STSongStd-Light", "UniGB-UCS2-H");

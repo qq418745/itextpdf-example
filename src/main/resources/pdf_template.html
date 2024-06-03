@@ -57,10 +57,10 @@
     <div class="sub-header">收款凭据</div>
     <div class="info">
         <p>客户名称：</p>
-        <p>房间号：xx文苑 11幢-506室 (85.23㎡)</p>
-        <p>订单号：202405236500</p>
-        <p style="text-align: right;">凭据号：202405230004</p>
-        <p style="text-align: right;">收款日期：2024年05月23日</p>
+        <p>房间号：{{room}}</p>
+        <p>订单号：{{orderNumber}}</p>
+        <p style="text-align: right;">凭据号：</p>
+        <p style="text-align: right;">收款日期：{{paymentDate}}</p>
     </div>
     <div class="table-container">
         <table>
@@ -72,22 +72,18 @@
                 <th>备注</th>
             </tr>
             <tr>
-                <td>物业费</td>
-                <td>微信支付</td>
-                <td>2023-01 ~ 2023-12</td>
-                <td>2025.00</td>
-                <td>贰仟零贰拾伍元整</td>
-            </tr>
-            <tr>
-                <td colspan="3">合计金额</td>
-                <td>2025.00</td>
-                <td></td>
+
+                <td>{{paymentType}}</td>
+                <td>{{orderPayType}}</td>
+                <td>{{billPeriods}}</td>
+                <td>{{amount}}</td>
+                <td>{{note}}</td>
             </tr>
         </table>
     </div>
     <div class="footer">
-        <p>打印日期：2024年05月28日</p>
-        <p>收款人：陈静</p>
+        <p>打印日期：{{printDate}}</p>
+        <p>收款人：</p>
         <p>收款单位：（盖章有效）</p>
     </div>
 </div>

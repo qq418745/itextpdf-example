@@ -2,7 +2,7 @@ package com.itextpdf;
 
 public class TemplateFiller {
     // 数据类
-    static class PaymentData {
+    public static class PaymentData {
         String room;
         String orderNumber;
         String paymentType;

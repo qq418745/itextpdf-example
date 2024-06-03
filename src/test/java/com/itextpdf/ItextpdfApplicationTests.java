@@ -31,22 +31,39 @@ public class ItextpdfApplicationTests {
     private ResourceLoader resourceLoader;
 
     @Test
-    void test() {
+    void test() throws IOException {
         // 输入HTML文件路径
         String htmlSource = "pdf_template.html";
+
+        // 创建一个数据实例
+        TemplateFiller.PaymentData data = new TemplateFiller.PaymentData(
+                "大文苑 11幢-506室 (85.23㎡)",
+                "202405236500",
+                "物业费",
+                "微信支付",
+                "2023-01 ~ 2023-12",
+                2025.00,
+                "贰仟零贰拾伍元整",
+                "2024年05月23日",
+                "2024年05月28日"
+        );
+
+        // 读取resources文件夹中的HTML文件并转换为字符串
+        var resource = resourceLoader.getResource("classpath:" + htmlSource);
+        var htmlBytes = Files.readAllBytes(Paths.get(resource.getURI()));
+        String htmlContent = new String(htmlBytes, StandardCharsets.UTF_8);
+
+        // 使用实际数据替换模板中的占位符
+        String result = TemplateFiller.replacePlaceholders(htmlContent, data);
+
         // 输出PDF文件路径
         String pdfDest = "output.pdf";
-        convertHtmlToPdf(htmlSource, pdfDest);
+        convertHtmlToPdf(result, pdfDest);
         System.out.println("test is OK!");
     }
 
-    public void convertHtmlToPdf(String htmlFileName, String pdfFileName) {
+    public void convertHtmlToPdf(String htmlContent, String pdfFileName) {
         try {
-            // 读取resources文件夹中的HTML文件并转换为字符串
-            var resource = resourceLoader.getResource("classpath:" + htmlFileName);
-            var htmlBytes = Files.readAllBytes(Paths.get(resource.getURI()));
-            String htmlContent = new String(htmlBytes, StandardCharsets.UTF_8);
-
             ConverterProperties properties = new ConverterProperties();
             FontProvider fontProvider = new FontProvider();
             // 常用字体程序及对应编码
